@@ -15,8 +15,6 @@ export const increment = ():Increment => ({
   type: CounterActionTypes.Increment
 })
 
-
-
 export const decrement = ():Decrement => ({
   type: CounterActionTypes.Decrement
 })
