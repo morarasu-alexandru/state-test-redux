@@ -1,4 +1,4 @@
-import { CounterState } from "../types";
+import { AppState, CounterState } from "../types";
 import { CounterActions, CounterActionTypes } from "../actions/counterActions";
 
 const initialState: CounterState = {
@@ -24,6 +24,10 @@ const counterReducer = (state = initialState, action: CounterActions) => {
     default:
       return state;
   }
+};
+
+export const selectCounterValue = (state: AppState): number => {
+  return state.counter.value;
 };
 
 export default counterReducer;
