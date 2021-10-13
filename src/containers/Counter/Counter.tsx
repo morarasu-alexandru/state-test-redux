@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import { useAppSelector } from "../../hooks/appSelector";
 import { selectCounterValue } from "../../store/reducers/counterReducer";
 import { useAppDispatch } from "../../hooks/actionDispatcher";
 import { decrement, increment } from "../../store/actions/counterActions";
 
-const Counter = () => {
+const Counter: FC = () => {
   const value = useAppSelector(selectCounterValue);
   const dispatch = useAppDispatch();
 

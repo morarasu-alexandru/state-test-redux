@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import counterReducer from "./counterReducer";
-import bookListReducer from "./bookListReducer";
+import bookReducer from "./bookReducer";
 
 const rootReducer = combineReducers({
   counter: counterReducer,
-  book: bookListReducer,
+  book: bookReducer,
 });
 
 export default rootReducer;

@@ -3,33 +3,32 @@ import { AppThunk } from "../types";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
-export enum BookListActionTypes {
-  GetBookListThunk = "BOOK-LIST--GET-BOOKS-THUNK",
+export enum BookActionTypes {
   GetBookListRequest = "BOOK-LIST--GET-BOOKS-REQUEST",
   GetBookListFailure = "BOOK-LIST--GET-BOOKS-FAILURE",
   GetBookListSuccess = "BOOK-LIST--GET-BOOKS-SUCCESS",
 }
 
 interface GetBookListRequest {
-  type: typeof BookListActionTypes.GetBookListRequest;
+  type: typeof BookActionTypes.GetBookListRequest;
 }
 
 interface GetBookListFailure {
-  type: typeof BookListActionTypes.GetBookListFailure;
+  type: typeof BookActionTypes.GetBookListFailure;
   payload: {
     error: string;
   };
 }
 
 interface GetBookListSuccess {
-  type: typeof BookListActionTypes.GetBookListSuccess;
+  type: typeof BookActionTypes.GetBookListSuccess;
   payload: {
     newList: any[];
   };
 }
 
 const getBookListRequest = (): GetBookListRequest => ({
-  type: BookListActionTypes.GetBookListRequest,
+  type: BookActionTypes.GetBookListRequest,
 });
 
 const getBookListFailure = ({
@@ -37,7 +36,7 @@ const getBookListFailure = ({
 }: {
   error: string;
 }): GetBookListFailure => ({
-  type: BookListActionTypes.GetBookListFailure,
+  type: BookActionTypes.GetBookListFailure,
   payload: { error },
 });
 
@@ -46,15 +45,16 @@ const getBookListSuccess = ({
 }: {
   newList: any[];
 }): GetBookListSuccess => ({
-  type: BookListActionTypes.GetBookListSuccess,
+  type: BookActionTypes.GetBookListSuccess,
   payload: { newList },
 });
 
 export const getBookListThunk =
-  (): AppThunk => (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+  (details?: { getError: boolean }): AppThunk =>
+  (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     dispatch(getBookListRequest());
 
-    getBooksApi()
+    getBooksApi(details?.getError)
       .then((res) => {
         dispatch(getBookListSuccess({ newList: res }));
       })

@@ -1,4 +1,4 @@
-import { BookListActions, BookListActionTypes } from "../actions/listActions";
+import { BookListActions, BookActionTypes } from "../actions/listActions";
 import { AppState, BookListState } from "../types";
 
 const initialState: BookListState = {
@@ -7,16 +7,16 @@ const initialState: BookListState = {
   error: null,
 };
 
-const bookListReducer = (state = initialState, action: BookListActions) => {
+const bookReducer = (state = initialState, action: BookListActions) => {
   switch (action.type) {
-    case BookListActionTypes.GetBookListRequest: {
+    case BookActionTypes.GetBookListRequest: {
       return {
         ...state,
         isLoading: true,
       };
     }
 
-    case BookListActionTypes.GetBookListSuccess: {
+    case BookActionTypes.GetBookListSuccess: {
       return {
         ...state,
         isLoading: false,
@@ -24,7 +24,7 @@ const bookListReducer = (state = initialState, action: BookListActions) => {
       };
     }
 
-    case BookListActionTypes.GetBookListFailure: {
+    case BookActionTypes.GetBookListFailure: {
       return {
         ...state,
         isLoading: false,
@@ -42,4 +42,4 @@ export const selectBooks = (state: AppState): BookListState => {
   return state.book;
 };
 
-export default bookListReducer;
+export default bookReducer;
